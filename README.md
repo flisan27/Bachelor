@@ -2,10 +2,6 @@
 
 ### Contents:
 
-Thesis_Essay.pdf: The final version of my bachelor thesis in PDF format.
-
-Thesis_LaTeX/: LaTeX source files for the thesis, including all text, figures, and references.
-
 Python_Scripts/: Python scripts developed for various analyses and computations in the project.
 
 XML_Simulations/: XML files used for simulations in the CORE Network Emulator.
