@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<scenario name="/tmp/tmpdt4j1k3g">
+  <networks/>
+  <devices>
+    <device id="1" name="R1" icon="" canvas="1" type="router" class="" image="">
+      <position x="102.0" y="251.0" lat="47.57688485807003" lon="-122.13094979636527" alt="2.0"/>
+      <configservices>
+        <service name="zebra"/>
+        <service name="IPForward"/>
+        <service name="OSPFv2"/>
+      </configservices>
+    </device>
+    <device id="2" name="R2" icon="" canvas="1" type="router" class="" image="">
+      <position x="296.0" y="108.0" lat="47.57818471990744" lon="-122.12833569888849" alt="2.0"/>
+      <configservices>
+        <service name="zebra"/>
+        <service name="IPForward"/>
+        <service name="OSPFv2"/>
+      </configservices>
+    </device>
+    <device id="3" name="R3" icon="" canvas="1" type="router" class="" image="">
+      <position x="298.0" y="398.0" lat="47.575548602824234" lon="-122.12830874942996" alt="2.0"/>
+      <configservices>
+        <service name="zebra"/>
+        <service name="IPForward"/>
+        <service name="OSPFv2"/>
+      </configservices>
+    </device>
+    <device id="4" name="R4" icon="" canvas="1" type="router" class="" image="">
+      <position x="648.0" y="396.0" lat="47.57556678339654" lon="-122.12359259418834" alt="2.0"/>
+      <configservices>
+        <service name="zebra"/>
+        <service name="IPForward"/>
+        <service name="OSPFv2"/>
+      </configservices>
+    </device>
+  </devices>
+  <links>
+    <link node1="1" node2="2">
+      <iface1 id="0" name="eth0" mac="00:00:00:aa:00:00" ip4="10.0.0.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:01" ip4="10.0.0.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="2" node2="3">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:02" ip4="10.0.1.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:03" ip4="10.0.1.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="3" node2="4">
+      <iface1 id="2" name="eth2" mac="00:00:00:aa:00:06" ip4="10.0.3.1" ip4_mask="24"/>
+      <iface2 id="0" name="eth0" mac="00:00:00:aa:00:07" ip4="10.0.3.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+    <link node1="3" node2="1">
+      <iface1 id="1" name="eth1" mac="00:00:00:aa:00:04" ip4="10.0.2.1" ip4_mask="24"/>
+      <iface2 id="1" name="eth1" mac="00:00:00:aa:00:05" ip4="10.0.2.2" ip4_mask="24"/>
+      <options delay="0" bandwidth="0" loss="0.0" dup="0" jitter="0" unidirectional="0" buffer="0"/>
+    </link>
+  </links>
+  <configservice_configurations>
+    <service name="zebra" node="1">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ip address 10.0.0.1/24
+    ip ospf network broadcast
+!
+interface eth1
+    ip address 10.0.2.2/24
+    ip ospf network broadcast
+!
+
+router ospf
+  router-id 10.0.0.1
+  network 10.0.0.1/24 area 0
+  network 10.0.2.2/24 area 0
+!
+]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="1"/>
+    <service name="OSPFv2" node="1"/>
+    <service name="zebra" node="2">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ip address 10.0.0.2/24
+    ip ospf network broadcast
+!
+interface eth1
+    ip address 10.0.1.1/24
+    ip ospf network broadcast
+!
+
+router ospf
+  router-id 10.0.0.2
+  network 10.0.0.2/24 area 0
+  network 10.0.1.1/24 area 0
+  network 10.0.2.1/24 area 0
+!
+]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="2"/>
+    <service name="OSPFv2" node="2"/>
+    <service name="zebra" node="3">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ip address 10.0.1.2/24
+    ip ospf network broadcast
+!
+interface eth1
+    ip address 10.0.2.1/24
+    ip ospf network broadcast
+!
+interface eth2
+    ip address 10.0.3.1/24
+    ip ospf network broadcast
+!
+
+router ospf
+  router-id 10.0.1.2
+  network 10.0.1.2/24 area 0
+  network 10.0.2.1/24 area 0
+  network 10.0.3.1/24 area 0
+!
+]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="3"/>
+    <service name="OSPFv2" node="3"/>
+    <service name="zebra" node="4">
+      <templates>
+        <template name="/usr/local/etc/quagga/Quagga.conf"><![CDATA[interface eth0
+    ip address 10.0.3.2/24
+    ip ospf network broadcast
+!
+
+router ospf
+  router-id 10.0.3.2
+  network 10.0.3.2/24 area 0
+!
+]]></template>
+      </templates>
+    </service>
+    <service name="IPForward" node="4"/>
+    <service name="OSPFv2" node="4"/>
+  </configservice_configurations>
+  <session_origin lat="47.579166412353516" lon="-122.13232421875" alt="2.0" scale="150.0"/>
+  <session_options>
+    <configuration name="controlnet" value=""/>
+    <configuration name="controlnet0" value=""/>
+    <configuration name="controlnet1" value=""/>
+    <configuration name="controlnet2" value=""/>
+    <configuration name="controlnet3" value=""/>
+    <configuration name="controlnet_updown_script" value=""/>
+    <configuration name="enablerj45" value="1"/>
+    <configuration name="preservedir" value="0"/>
+    <configuration name="enablesdt" value="0"/>
+    <configuration name="sdturl" value="tcp://127.0.0.1:50000/"/>
+    <configuration name="ovs" value="0"/>
+    <configuration name="platform_id_start" value="1"/>
+    <configuration name="nem_id_start" value="1"/>
+    <configuration name="link_enabled" value="1"/>
+    <configuration name="loss_threshold" value="30"/>
+    <configuration name="link_interval" value="1"/>
+    <configuration name="link_timeout" value="4"/>
+    <configuration name="mtu" value="0"/>
+  </session_options>
+  <session_metadata>
+    <configuration name="shapes" value="[{&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [71.00000000000001, 212.0], &quot;label&quot;: &quot;Attacker&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 14, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [293.99999999999994, 70.99999999999999], &quot;label&quot;: &quot;Target&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 14, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [645.0, 357.0], &quot;label&quot;: &quot;Victim&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 14, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: true, &quot;italic&quot;: false, &quot;underline&quot;: false}, {&quot;canvas&quot;: 1, &quot;type&quot;: &quot;text&quot;, &quot;iconcoords&quot;: [502.0, 506.0], &quot;label&quot;: &quot;&quot;, &quot;fontfamily&quot;: &quot;Arial&quot;, &quot;fontsize&quot;: 12, &quot;labelcolor&quot;: &quot;#000000&quot;, &quot;color&quot;: &quot;&quot;, &quot;border&quot;: &quot;#000000&quot;, &quot;width&quot;: 1, &quot;bold&quot;: false, &quot;italic&quot;: false, &quot;underline&quot;: false}]"/>
+    <configuration name="edges" value="[]"/>
+    <configuration name="hidden" value="[]"/>
+    <configuration name="canvas" value="{&quot;gridlines&quot;: false, &quot;canvases&quot;: [{&quot;id&quot;: 1, &quot;wallpaper&quot;: null, &quot;wallpaper_style&quot;: 1, &quot;fit_image&quot;: false, &quot;dimensions&quot;: [1000, 750]}]}"/>
+  </session_metadata>
+  <default_services>
+    <node type="mdr">
+      <service name="zebra"/>
+      <service name="OSPFv3MDR"/>
+      <service name="IPForward"/>
+    </node>
+    <node type="PC">
+      <service name="DefaultRoute"/>
+    </node>
+    <node type="prouter"/>
+    <node type="router">
+      <service name="zebra"/>
+      <service name="OSPFv2"/>
+      <service name="OSPFv3"/>
+      <service name="IPForward"/>
+    </node>
+    <node type="host">
+      <service name="DefaultRoute"/>
+      <service name="SSH"/>
+    </node>
+  </default_services>
+</scenario>
