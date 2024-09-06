@@ -25,7 +25,7 @@ For suggestions or issues, please open an issue in the repository.
 
 ### Tips for simulations
 
-If you want to use Wireshark-GUI on the simulated machines to analyze traffic, open a terminal and enter the command ```xhost +``` to disable access control, meaning any application running on any machine can access and control the graphical display of the local machine. You can then open a GUI with Wireshark by typing ```DISPLAY=:0 wireshark``` on the node console.
+If you want to use Wireshark-GUI on the simulated machines to analyze traffic, open a terminal and enter the command ```xhost +``` to disable access control, meaning any application running on any machine can access and control the graphical display of the local machine. You can then open a GUI with Wireshark by typing ```DISPLAY=:0 wireshark``` on desired node console.
  
 We frequently used debug commands in OSPF such as ```debug ospf event``` and ```debug ospf packet (packet type)```. You can use ```show debugging ospf``` to confirm that they are on.
 
