@@ -1,5 +1,15 @@
 #!/usr/bin/env python
 
+"""
+Proof-of-concept for Remote false adjacency
+Author:	Gabi Nakibly
+Date:	2011
+
+Updated by: Leo Åkerberg & Viktor Johansson Baurne
+Date: 2024.03.20
+Original version downloaded from: https://www.blackhat.com/html/bh-us-11/bh-us-11-archives.html
+"""
+
 from scapy.all import *
 import time
 load_contrib('ospf')
