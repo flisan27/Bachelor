@@ -2,7 +2,7 @@
 """
 Disguised LSA OSPF Attack Proof of Concept
 Author:	Gabi Nakibly
-Date:	2011.8.4
+Date:	2011.08.04
 
 Updated by: Leo Åkerberg & Viktor Johansson Baurne
 Date: 2024.03.19
