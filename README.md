@@ -29,5 +29,8 @@ If you want to use Wireshark-GUI on the simulated machines to analyze traffic, o
  
 We frequently used debug commands in OSPF such as ```debug ospf event``` and ```debug ospf packet (packet type)```. You can use ```show debugging ospf``` to confirm that they are on.
 
+Link to the documentation for Core:
+https://coreemu.github.io/core/gui.html
+
 
 
