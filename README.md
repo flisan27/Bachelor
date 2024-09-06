@@ -23,7 +23,7 @@ For suggestions or issues, please open an issue in the repository.
 2. Run the commands ```sudo core-daemon``` and ```core-gui``` in separate terminals to start the GUI
 3. Now you have the ability to open run our scenarios from XML_Simulations/ or create your own.
 4. Each script is related to a certain scenario according to the description of the script.
-5. If you want to run a script on your own scenario, remember to update the network information in the source code.
+5. If you want to run a script on your own scenario, remember to update the network information in the source code!
 
 ### Tips for simulations
 
